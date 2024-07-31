@@ -1,0 +1,23 @@
+﻿@page "{id:int}"
+@model DepartmentManager.Web.Pages.DetailsModel
+ 
+<h3>Department Details</h3>
+@if (Model.Department != null)
+{
+<div>
+    <h4>Name: @Model.Department.Name</h4>
+    @* <p><strong>Parent Department:</strong> @Model.Department?.ParentDepartment?.Name </p> *@
+   
+    <h5>SubDepartments</h5>
+    <ul>
+        @if (Model.SubDepartments != null && Model.SubDepartments.Any())
+
+        @foreach (var subDepartment in Model.SubDepartments)
+        {
+                    <li> <a asp-page="./Details" asp-route-id="@subDepartment.Id">@subDepartment.Name</a></li>
+        }
+
+    </ul>
+</div>
+}
+<a asp-page="./Index" class="btn btn-secondary">Back to List</a>

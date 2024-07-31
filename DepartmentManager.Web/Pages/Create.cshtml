@@ -1,0 +1,30 @@
+﻿@page
+@model DepartmentManager.Web.Pages.CreateModel
+@{
+    ViewData["Title"] = "Create Department";
+}
+
+<h1>Create Department</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Department.Name"></label>
+        <input asp-for="Department.Name" class="form-control" />
+        <span asp-validation-for="Department.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Department.ParentDepartmentId">Parent Department</label>
+        <select asp-for="Department.ParentDepartmentId" class="form-control" asp-items="Model.ParentDepartments">
+            <option value="">-- Select Parent Department --</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
